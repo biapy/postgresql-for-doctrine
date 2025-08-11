@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace MartinGeorgiev\Doctrine\DBAL\Types\ValueObject;
 
+use Symfony\Component\Serializer\Attribute\Ignore;
+
 interface LtreeInterface extends \Stringable
 {
     /**
@@ -23,6 +25,7 @@ interface LtreeInterface extends \Stringable
      *
      * @throws \InvalidArgumentException if the leaf is empty or contains dot
      */
+    #[Ignore]
     public function createLeaf(string $leaf): static;
 
     /**
@@ -30,16 +33,21 @@ interface LtreeInterface extends \Stringable
      */
     public function getBranch(): array;
 
+    #[Ignore]
     public function equals(LtreeInterface $ltree): bool;
 
+    #[Ignore]
     public function isAncestorOf(LtreeInterface $ltree): bool;
 
+    #[Ignore]
     public function isDescendantOf(LtreeInterface $ltree): bool;
 
+    #[Ignore]
     public function isRoot(): bool;
 
     /**
-     * @tthrows \LogicException if the ltree is root
+     * @throws \LogicException if the ltree is root
      */
+    #[Ignore]
     public function getParent(): static;
 }
